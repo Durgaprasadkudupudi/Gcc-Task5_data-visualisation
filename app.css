@@ -1,3 +1,4 @@
+/* Reset and general styles */
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image\ pro.jpg') no-repeat center center fixed;
@@ -9,30 +10,29 @@ body {
     align-items: center;
     color: white; /* Adjusted to improve readability on dark background */
 }
+
 h1 {
     color: #fff; /* Adjusted to white */
     text-align: center;
 }
+
 form {
-    /* background: rgba(255, 255, 255, 0.9); */
     padding: 20px;
     margin: 10px 0;
     border-radius: 8px;
     box-shadow: 2px 2px 14px rgba(129, 2, 248, 0.953);
     width: 100%;
     max-width: 600px;
-    background: transparent;
+    background: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
 }
-form {
-    background-color: #ffffff83 ;
-}
+
 form label {
     display: flex;
     height: 20px;
     margin-bottom: 5px;
     font-weight: bold;
-    
 }
+
 form input {
     margin-bottom: 10px;
     padding: 15px;
@@ -42,28 +42,32 @@ form input {
     border-radius: 10px;
     width: calc(100% - 22px); /* Adjust width to account for padding and border */
     box-sizing: border-box;
-    
 }
+
 form button {
+    padding: 10px; /* Adjusted padding */
+    margin-bottom: 10px; /* Added margin bottom */
     background: #007bff;
     color: white;
     border: none;
-    padding: 10px 0px;
-    margin-left: 10px;
-    border-radius: 81px;
+    border-radius: 10px; /* Rounded corners */
     cursor: pointer;
-    transition: background 0.3s;
+    transition: background 0.3s, color 0.3s; /* Smooth transition */
     width: 100%;
-    max-width: 200px;
+    max-width: 200px; /* Limit maximum width */
+    text-align: center; /* Center text */
 }
+
 form button:hover {
-    background: #03ff25;
+    background: #03ff25; /* Greenish background on hover */
 }
+
 .feedback {
     display: block;
     margin-top: 10px;
     color: red;
 }
+
 .chart-container {
     width: 100%;
     max-width: 800px;
@@ -73,13 +77,20 @@ form button:hover {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     margin-top: 20px;
 }
+
 @keyframes highlight {
-    from { background-color: yellow; }
-    to { background-color: transparent; }
+    from {
+        background-color: yellow;
+    }
+    to {
+        background-color: transparent;
+    }
 }
+
 .highlight {
     animation: highlight 0.5s ease-in-out;
 }
+
 .invalid {
     border-color: red;
 }
@@ -95,12 +106,15 @@ form button:hover {
     }
     form button {
         width: 100%;
+        font-size: 14px; /* Decreased font size */
+        padding: 8px; /* Decreased padding */
     }
     .chart-container {
         padding: 15px;
         width: 100%;
     }
 }
+
 @media (max-width: 480px) {
     h1 {
         font-size: 1.5em;
@@ -108,59 +122,52 @@ form button:hover {
     form {
         padding: 10px;
     }
+    form button {
+        width: 100%;
+        font-size: 12px; /* Further decreased font size */
+        padding: 6px; /* Further decreased padding */
+    }
     .chart-container {
         padding: 10px;
     }
 }
-#dataForm {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-    height: 50px;
-    margin-left: 5px;
-    margin-left: 10px;
-}
 
-#updateForm {
-    display: flex;
-    width: 6000px;
-    height: 50px;
-    margin-left: 10px;
-}
-
-#deleteForm {
-    display: flex;
-    
-    height: 50px;
-    margin-left: 10px;
+/* Button specific styles */
+.delete, .add, .upd {
+    padding: 10px; /* Adjusted padding for all buttons */
+    margin-bottom: 10px; /* Added margin bottom */
+    width: 100%; /* Make all buttons full-width */
+    max-width: 200px; /* Limit maximum width */
+    text-align: center; /* Center text */
+    border: none; /* Remove border */
+    cursor: pointer; /* Add pointer cursor */
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for hover effects */
+    border-radius: 10px; /* Rounded corners */
+    color: white; /* Text color */
 }
 
 .delete {
-    padding: 20px;
-    padding-left: 5px;
-    width: 205px;
-    background-color: #4b026b;
-
-
+    background-color: #4b026b; /* Purple background for delete button */
 }
 
-.delete:hover{
-    background-color: red;
+.delete:hover {
+    background-color: red; /* Red background on hover */
 }
 
-.add:hover{
-    background-color: rgba(23, 235, 8, 0.836);
-    color: black;
-}
 .add {
-    background-color: #4b026b;
+    background-color: #4b026b; /* Purple background for add button */
 }
 
-.upd:hover{
-    background-color: rgb(22, 104, 124);
+.add:hover {
+    background-color: rgba(23, 235, 8, 0.836); /* Light green background on hover */
+    color: black; /* Change text color on hover */
 }
 
 .upd {
-    background-color: #4b026b;
-    color: #f8f0f0;
+    background-color: #4b026b; /* Purple background for update button */
+    color: #f8f0f0; /* White text color */
+}
+
+.upd:hover {
+    background-color: rgb(22, 104, 124); /* Darker blue background on hover */
 }
