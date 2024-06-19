@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enhanced Data Visualization with Chart.js</title>
+    <!-- Include Chart.js Library via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="app.css">
+    
+</head>
+<body>
+    <h1>Data Visualization</h1>
+
+    <!-- Form for User Input -->
+    <form id="dataForm">
+        <label for="label" style="color: black;">Label:</label><br>
+        <input type="text" id="label" name="label" required>
+        <label for="value" style="color: black;" >Value:</label>
+        <input type="number" id="value" name="value" required>
+        <button type="submit" class="add">Add Data</button>
+        <span id="formFeedback" class="feedback"></span>
+    </form>
+
+    <!-- Form for Updating Data -->
+    <form id="updateForm">
+        <label for="updateLabel" style="color: black";>Label to Update:</label>
+        <input type="text" id="updateLabel" name="updateLabel" required>
+        <label for="newValue" style="color: black">New Value:</label>
+        <input type="number" id="newValue" name="newValue" required>
+        <button type="submit" class="upd">Update Data</button>
+        <span id="updateFeedback" class="feedback"></span>
+    </form>
+
+    <!-- Form for Deleting Data -->
+    <form id="deleteForm">
+        <label for="deleteLabel" style="color: black">Label to Delete:</label>
+        <input type="text" id="deleteLabel" name="deleteLabel" required>
+        <button type="submit" class="delete">Delete Data</button>
+        <span id="deleteFeedback" class="feedback"></span>
+    </form>
+
+    <!-- Chart Container -->
+    <div class="chart-container">
+        <canvas id="myChart" width="400" height="200"></canvas>
+    </div>
+
+    <!-- JavaScript to Handle Form and Chart -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const dataForm = document.getElementById('dataForm');
+            const updateForm = document.getElementById('updateForm');
+            const deleteForm = document.getElementById('deleteForm');
+            const labelInput = document.getElementById('label');
+            const valueInput = document.getElementById('value');
+            const updateLabelInput = document.getElementById('updateLabel');
+            const newValueInput = document.getElementById('newValue');
+            const deleteLabelInput = document.getElementById('deleteLabel');
+            const formFeedback = document.getElementById('formFeedback');
+            const updateFeedback = document.getElementById('updateFeedback');
+            const deleteFeedback = document.getElementById('deleteFeedback');
+            const ctx = document.getElementById('myChart').getContext('2d');
+            let labels = [];
+            let values = [];
+
+            // Initialize Chart.js Chart
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'User Data',
+                        data: values,
+                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    animation: {
+                        duration: 1000,
+                        easing: 'easeOutBounce'
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            enabled: true
+                        },
+                        legend: {
+                            display: true
+                        }
+                    }
+                }
+            });
+
+            // Handle Form Submission for Adding Data
+            dataForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Capture data from form
+                const label = labelInput.value.trim();
+                const value = parseFloat(valueInput.value.trim());
+
+                // Validate inputs
+                if (label === "" || isNaN(value)) {
+                    formFeedback.textContent = "Please provide valid inputs.";
+                    formFeedback.style.color = "red";
+                    return;
+                }
+
+                formFeedback.textContent = "";
+
+                // Add data to arrays
+                labels.push(label);
+                values.push(value);
+
+                // Update chart
+                myChart.update();
+
+                // Highlight the chart area
+                document.getElementById('myChart').classList.add('highlight');
+                setTimeout(() => {
+                    document.getElementById('myChart').classList.remove('highlight');
+                }, 500);
+
+                // Clear form fields
+                dataForm.reset();
+            });
+
+            // Handle Form Submission for Updating Data
+            updateForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Capture data from form
+                const updateLabel = updateLabelInput.value.trim();
+                const newValue = parseFloat(newValueInput.value.trim());
+
+                // Validate inputs
+                if (updateLabel === "" || isNaN(newValue)) {
+                    updateFeedback.textContent = "Please provide valid inputs.";
+                    updateFeedback.style.color = "red";
+                    return;
+                }
+
+                updateFeedback.textContent = "";
+
+                // Find the index of the label to update
+                const index = labels.indexOf(updateLabel);
+                if (index !== -1) {
+                    // Update the value
+                    values[index] = newValue;
+                    myChart.update();
+
+                    // Highlight the chart area
+                    document.getElementById('myChart').classList.add('highlight');
+                    setTimeout(() => {
+                        document.getElementById('myChart').classList.remove('highlight');
+                    }, 500);
+
+                    // Clear form fields
+                    updateForm.reset();
+                } else {
+                    updateFeedback.textContent = "Label not found.";
+                    updateFeedback.style.color = "red";
+                }
+            });
+
+            // Handle Form Submission for Deleting Data
+            deleteForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+
+                // Capture data from form
+                const deleteLabel = deleteLabelInput.value.trim();
+
+                // Validate input
+                if (deleteLabel === "") {
+                    deleteFeedback.textContent = "Please provide a valid label.";
+                    deleteFeedback.style.color = "red";
+                    return;
+                }
+
+                deleteFeedback.textContent = "";
+
+                // Find the index of the label to delete
+                const index = labels.indexOf(deleteLabel);
+                if (index !== -1) {
+                    // Remove the label and value
+                    labels.splice(index, 1);
+                    values.splice(index, 1);
+                    myChart.update();
+
+                    // Highlight the chart area
+                    document.getElementById('myChart').classList.add('highlight');
+                    setTimeout(() => {
+                        document.getElementById('myChart').classList.remove('highlight');
+                    }, 500);
+
+                    // Clear form fields
+                    deleteForm.reset();
+                } else {
+                    deleteFeedback.textContent = "Label not found.";
+                    deleteFeedback.style.color = "red";
+                }
+            });
+        });
+    </script>
+</body>
+</html>

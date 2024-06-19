@@ -1,0 +1,166 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('image\ pro.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: white; /* Adjusted to improve readability on dark background */
+}
+h1 {
+    color: #fff; /* Adjusted to white */
+    text-align: center;
+}
+form {
+    /* background: rgba(255, 255, 255, 0.9); */
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 2px 2px 14px rgba(129, 2, 248, 0.953);
+    width: 100%;
+    max-width: 600px;
+    background: transparent;
+}
+form {
+    background-color: #ffffff83 ;
+}
+form label {
+    display: flex;
+    height: 20px;
+    margin-bottom: 5px;
+    font-weight: bold;
+    
+}
+form input {
+    margin-bottom: 10px;
+    padding: 15px;
+    margin-left: 15px;
+    margin-right: 5px;
+    border: 1px solid #4504042b;
+    border-radius: 10px;
+    width: calc(100% - 22px); /* Adjust width to account for padding and border */
+    box-sizing: border-box;
+    
+}
+form button {
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 0px;
+    margin-left: 10px;
+    border-radius: 81px;
+    cursor: pointer;
+    transition: background 0.3s;
+    width: 100%;
+    max-width: 200px;
+}
+form button:hover {
+    background: #03ff25;
+}
+.feedback {
+    display: block;
+    margin-top: 10px;
+    color: red;
+}
+.chart-container {
+    width: 100%;
+    max-width: 800px;
+    background: rgba(255, 255, 255, 0.9); /* Adjusted for readability */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+@keyframes highlight {
+    from { background-color: yellow; }
+    to { background-color: transparent; }
+}
+.highlight {
+    animation: highlight 0.5s ease-in-out;
+}
+.invalid {
+    border-color: red;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    form {
+        padding: 15px;
+        width: 100%;
+    }
+    form button {
+        width: 100%;
+    }
+    .chart-container {
+        padding: 15px;
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.5em;
+    }
+    form {
+        padding: 10px;
+    }
+    .chart-container {
+        padding: 10px;
+    }
+}
+#dataForm {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 50px;
+    margin-left: 5px;
+    margin-left: 10px;
+}
+
+#updateForm {
+    display: flex;
+    width: 6000px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+#deleteForm {
+    display: flex;
+    
+    height: 50px;
+    margin-left: 10px;
+}
+
+.delete {
+    padding: 20px;
+    padding-left: 5px;
+    width: 205px;
+    background-color: #4b026b;
+
+
+}
+
+.delete:hover{
+    background-color: red;
+}
+
+.add:hover{
+    background-color: rgba(23, 235, 8, 0.836);
+    color: black;
+}
+.add {
+    background-color: #4b026b;
+}
+
+.upd:hover{
+    background-color: rgb(22, 104, 124);
+}
+
+.upd {
+    background-color: #4b026b;
+    color: #f8f0f0;
+}
